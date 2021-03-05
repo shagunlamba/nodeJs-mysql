@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mysql = require('mysql2');
 var q = require('q');
 const multer = require('multer');
@@ -13,10 +14,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 var db = mysql.createConnection({    
-    host: "us-cdbr-east-03.cleardb.com",
-    user: "bf83e50252edf0",
-    password: "2ab72470",
-    database: "heroku_68b04651207c024"
+     host: process.env.DB_HOST,
+     user: process.env.DB_USER,
+     password: process.env.DB_PASS
+     database: "heroku_68b04651207c024"
 });
 
 app.get('/', function (req, res) {
